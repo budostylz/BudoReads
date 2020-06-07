@@ -14,11 +14,17 @@ class BudoReads extends Component {
 
     state = {
 
+        currentReads: [],
+        wantToReads: [],
+        read: [],
+        searchResults: []
+
     }
 
 
     render() {
 
+        console.log('state', this.state)
         return (<div>
 
             <Route
@@ -39,7 +45,7 @@ class BudoReads extends Component {
 
             <Route
                 path='/search'
-                render={() => (
+                render={({ history }) => (
                     <Search />
                 )}
             />

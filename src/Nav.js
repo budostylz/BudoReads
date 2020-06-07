@@ -2,15 +2,46 @@
   * TODO: Nav Component
 */
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
+
 
 
 const Nav = (props) => {
 
-    console.log('props', props)
+    console.log('Nav props', props)
 
-    return (<nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="#">Search Books</a>
-    </nav>)
+    return (<div className="container">
+        <div className="row">
+            <div className="col text-center">
+
+                <Route
+                    exact path='/'
+                    render={() => (
+                        <div>
+                            <Link
+                                to='/search'
+                                className="navbar-brand"
+                                style={{ color: '#000000' }}
+                            >Click Here to Search Books</Link>
+                        </div>)}
+                />
+
+                <Route
+                    path='/search'
+                    render={() => (
+                        <div>
+                            <Link
+                                to='/'
+                                className="navbar-brand"
+                                style={{ color: '#000000' }}
+                            >Click Here to Return Home</Link>
+                        </div>)}
+                />
+
+            </div>
+        </div>
+    </div>)
 
 }
 

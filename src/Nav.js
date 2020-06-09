@@ -9,7 +9,7 @@ import { Route } from 'react-router-dom'
 
 const Nav = (props) => {
 
-    console.log('Nav props', props)
+    //console.log('Nav props', props)
 
     return (<div className="container">
         <div className="row">

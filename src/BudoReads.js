@@ -9,6 +9,8 @@ import WantToReads from './WantToReads.js'
 import Reads from './Reads.js'
 import Nav from './Nav.js'
 import Search from './Search.js'
+import * as BooksAPI from './BooksAPI'
+
 
 class BudoReads extends Component {
 
@@ -17,9 +19,56 @@ class BudoReads extends Component {
         currentReads: [],
         wantToReads: [],
         read: [],
-        searchResults: []
+        searchResults: [],
+        selectOption: null
+
 
     }
+
+    componentDidMount() {//getAll
+
+        console.log('componentDidMount')
+        BooksAPI.getAll()
+            .then((books) => {
+                console.log('books', books)
+
+                this.filterBooks(books);
+
+            })
+    }
+
+    filterBooks = (books) => {
+        const currentlyReadingBooks = books.filter(book => book.shelf === 'currentlyReading');
+        const wantToReadBooks = books.filter(book => book.shelf === 'wantToRead');
+        const readBooks = books.filter(book => book.shelf === 'read');
+
+        this.setState(currentState => ({
+            currentReads: currentlyReadingBooks,
+            wantToReads: wantToReadBooks,
+            read: readBooks
+
+
+        }))
+
+    }
+
+
+    updateBookShelf = () => {//update
+
+    }
+
+    removeBookFromCollection = () => {//get
+
+    }
+
+
+    searchBooks = () => {//search
+
+    }
+
+
+
+
 
 
     render() {
@@ -33,9 +82,13 @@ class BudoReads extends Component {
                     <div className="list-books">
                         <div className="list-books-content">
                             <div>
-                                <CurrentReads />
-                                <WantToReads />
-                                <Reads />
+                                <CurrentReads
+                                    currentBooks={this.state.currentReads}
+                                />
+                                <WantToReads
+                                    wantToReadBooks={this.state.wantToReads} />
+                                <Reads
+                                    readBooks={this.state.read} />
                                 <Nav />
                             </div>
                         </div>

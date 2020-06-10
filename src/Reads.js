@@ -1,18 +1,22 @@
 import React from 'react'
-import Select from 'react-select'
+import PropTypes from 'prop-types'
+
 
 const Reads = (props) =>
     (<div className="bookshelf">
         <h2 className="bookshelf-title">Read</h2>
         <div className="bookshelf-books">
             <ol className="books-grid">
-                {console.log('CurrentReads props', props)}
-                {props.readBooks.map(book => (<li key={book.id}>
-                    <div className="book">
+                {/*console.log('Reads props', props)*/}
+                {props.readBooks.filter(book => book.shelf === 'read').map(book => (<li key={book.id}>
+                    <div className="book" id={book.id}>
                         <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>
                             <div className="book-shelf-changer">
-                                <select>
+                                <select
+                                    defaultValue={(props.selectOption === '') ? 'read' : props.selectOption}
+                                    onClick={props.selectBookShelf}
+                                >
                                     <option value="move" disabled>Move to...</option>
                                     <option value="currentlyReading">Currently Reading</option>
                                     <option value="wantToRead">Want to Read</option>
@@ -31,6 +35,13 @@ const Reads = (props) =>
             </ol>
         </div>
     </div>)
+
+Reads.propTypes = {
+    readBooks: PropTypes.array.isRequired,
+    selectOption: PropTypes.string.isRequired,
+    selectBookShelf: PropTypes.func.isRequired
+
+}
 
 
 export default Reads

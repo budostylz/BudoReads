@@ -12,48 +12,65 @@ import Search from './Search.js'
 import * as BooksAPI from './BooksAPI'
 
 
+
 class BudoReads extends Component {
 
     state = {
 
-        currentReads: [],
-        wantToReads: [],
-        read: [],
+        myBooks: [],
         searchResults: [],
-        selectOption: null
+        selectOption: ''
 
 
     }
 
     componentDidMount() {//getAll
 
-        console.log('componentDidMount')
+        //console.log('componentDidMount')
         BooksAPI.getAll()
             .then((books) => {
-                console.log('books', books)
+                //console.log('books', books)
 
-                this.filterBooks(books);
+                this.getBooks(books);
 
             })
     }
 
-    filterBooks = (books) => {
-        const currentlyReadingBooks = books.filter(book => book.shelf === 'currentlyReading');
-        const wantToReadBooks = books.filter(book => book.shelf === 'wantToRead');
-        const readBooks = books.filter(book => book.shelf === 'read');
+
+
+    getBooks = (books) => {
 
         this.setState(currentState => ({
-            currentReads: currentlyReadingBooks,
-            wantToReads: wantToReadBooks,
-            read: readBooks
-
+            myBooks: books
 
         }))
 
     }
 
 
-    updateBookShelf = () => {//update
+    updateBookShelf = (e) => {//update
+
+        const { myBooks } = this.state;
+        const selectValue = e.target.options[e.target.options.selectedIndex].value;
+        const bookID = e.target.parentElement.parentElement.parentElement.getAttribute('id');
+        const selectedBook = myBooks.filter(book => book.id === bookID);
+
+
+
+        console.log('selected shelf', selectValue)
+        console.log('book id', bookID)
+        console.log('selectedBook', selectedBook)
+
+
+
+
+        //update state
+        this.setState(currentState => ({
+            selectOption: selectValue
+
+        }))
+
+        //update API
 
     }
 
@@ -74,6 +91,8 @@ class BudoReads extends Component {
     render() {
 
         console.log('state', this.state)
+
+        const { myBooks, selectOption } = this.state;
         return (<div>
 
             <Route
@@ -82,13 +101,23 @@ class BudoReads extends Component {
                     <div className="list-books">
                         <div className="list-books-content">
                             <div>
+
                                 <CurrentReads
-                                    currentBooks={this.state.currentReads}
+                                    currentBooks={myBooks}
+                                    selectOption={selectOption}
+                                    selectBookShelf={this.updateBookShelf}
                                 />
                                 <WantToReads
-                                    wantToReadBooks={this.state.wantToReads} />
+                                    wantToReadBooks={myBooks}
+                                    selectOption={selectOption}
+                                    selectBookShelf={this.updateBookShelf}
+                                />
                                 <Reads
-                                    readBooks={this.state.read} />
+                                    readBooks={myBooks}
+                                    selectOption={selectOption}
+                                    selectBookShelf={this.updateBookShelf}
+                                />
+
                                 <Nav />
                             </div>
                         </div>

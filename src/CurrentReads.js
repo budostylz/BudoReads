@@ -4,23 +4,27 @@
 
 
 import React from 'react'
-import Select from 'react-select'
+import PropTypes from 'prop-types'
 
 const CurrentReads = (props) => (<div className="bookshelf">
     <h2 className="bookshelf-title">Currently Reading</h2>
     <div className="bookshelf-books">
         <ol className="books-grid">
-            {console.log('CurrentReads props', props)}
-            {props.currentBooks.map(book => (<li key={book.id}>
-                <div className="book">
+            {/*console.log('CurrentReads props', props.currentBooks.filter(book => book.shelf === 'currentlyReading'))*/}
+            {props.currentBooks.filter(book => book.shelf === 'currentlyReading').map(book => (<li key={book.id}>
+                <div className="book" id={book.id}>
                     <div className="book-top">
                         <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>
                         <div className="book-shelf-changer">
-                            <select>
+                            <select
+                                defaultValue={(props.selectOption === '') ? 'currentlyReading' : props.selectOption}
+                                onClick={props.selectBookShelf}
+
+                            >
                                 <option value="move" disabled>Move to...</option>
                                 <option value="currentlyReading">Currently Reading</option>
                                 <option value="wantToRead">Want to Read</option>
-                                <option value="read" defaultValue={'selected'}>Read</option>
+                                <option value="read">Read</option>
                                 <option value="none">None</option>
                             </select>
                         </div>
@@ -32,6 +36,7 @@ const CurrentReads = (props) => (<div className="bookshelf">
                 </div>
             </li>))}
 
+
         </ol>
     </div>
 </div>)
@@ -39,7 +44,12 @@ const CurrentReads = (props) => (<div className="bookshelf">
 
 
 
+CurrentReads.propTypes = {
+    currentBooks: PropTypes.array.isRequired,
+    selectOption: PropTypes.string.isRequired,
+    selectBookShelf: PropTypes.func.isRequired
 
+}
 
 
 

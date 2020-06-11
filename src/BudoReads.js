@@ -50,27 +50,51 @@ class BudoReads extends Component {
 
     updateBookShelf = (e) => {//update
 
-        const { myBooks } = this.state;
-        const selectValue = e.target.options[e.target.options.selectedIndex].value;
-        const bookID = e.target.parentElement.parentElement.parentElement.getAttribute('id');
-        const selectedBook = myBooks.filter(book => book.id === bookID);
+        const { myBooks, selectOption } = this.state;
+        const shelf = e.target.options[e.target.options.selectedIndex].value;
+
+
+        if (selectOption !== shelf) {
+
+            const bookID = e.target.parentElement.parentElement.parentElement.getAttribute('id');
+            const book = myBooks.filter(book => book.id === bookID)[0];
+            const newBookSet = myBooks.filter(book => book.id !== bookID);
+
+            //console.log('state', this.state)
+            //console.log('shelf', shelf)
+            //console.log('book id', bookID)
+            //console.log('selectedBook', book)
+            //console.log('new book set filtered', newBookSet)
 
 
 
-        console.log('selected shelf', selectValue)
-        console.log('book id', bookID)
-        console.log('selectedBook', selectedBook)
+            //update API
+            BooksAPI.update(book, shelf)
+                .then((book) => {
+                    //console.log('update book', book)
+                    BooksAPI.get(bookID)
+                        .then((book) => {
+                            //console.log('get updated book', book)
+
+                            newBookSet.push(book)
+
+                            //console.log('new myBooks state', newBookSet)
+
+                            this.setState(currentState => ({
+                                myBooks: newBookSet,
+                                selectOption: shelf
+
+                            }))
+                        })
+
+                })
+
+
+        }
 
 
 
 
-        //update state
-        this.setState(currentState => ({
-            selectOption: selectValue
-
-        }))
-
-        //update API
 
     }
 

@@ -11,10 +11,12 @@ const Reads = (props) =>
                 {props.readBooks.filter(book => book.shelf === 'read').map(book => (<li key={book.id}>
                     <div className="book" id={book.id}>
                         <div className="book-top">
-                            <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>
+                            <div className="book-cover"
+                                style={{ width: 128, height: 188, backgroundImage: `url("${(book.imageLinks) ? book.imageLinks.thumbnail : ''}")` }}>
+                            </div>
                             <div className="book-shelf-changer">
                                 <select
-                                    defaultValue={(props.selectOption === '') ? 'read' : props.selectOption}
+                                    defaultValue='read'
                                     onClick={props.selectBookShelf}
                                 >
                                     <option value="move" disabled>Move to...</option>

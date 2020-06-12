@@ -52,14 +52,12 @@ class BudoReads extends Component {
 
         const { myBooks, selectOption } = this.state;
         const shelf = e.target.options[e.target.options.selectedIndex].value;
+        const bookID = e.target.parentElement.parentElement.parentElement.getAttribute('id');
+        const book = myBooks.filter(book => book.id === bookID)[0]; //show me a better way to not use an index[0] if possible
+        const newBookSet = myBooks.filter(book => book.id !== bookID);
 
         console.log('selectedOption', selectOption)
         console.log('shelf', shelf)
-
-
-        const bookID = e.target.parentElement.parentElement.parentElement.getAttribute('id');
-        const book = myBooks.filter(book => book.id === bookID)[0]; //shoe me a better way to not use an index[0] if possible
-        const newBookSet = myBooks.filter(book => book.id !== bookID);
 
         //console.log('state', this.state)
         //console.log('shelf', shelf)
@@ -241,6 +239,8 @@ class BudoReads extends Component {
                         searchResults={searchResults}
                         selectOption={selectOption}
                         selectBookShelf={this.addBookToShelf}
+                        currentBooks={myBooks}
+
 
                     />
                 )}

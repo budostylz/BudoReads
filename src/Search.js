@@ -43,7 +43,7 @@ const Search = (props) => {
                 </div>
                 <div className="search-books-results mt-5">
                     <ol className="books-grid">
-                        {/*console.log('CurrentReads props', props.currentBooks.filter(book => book.shelf === 'currentlyReading'))*/}
+                        {/*console.log('Search props', props)*/}
                         {props.searchResults.map(book => (<li key={book.id}>
                             <div className="book" id={book.id}>
                                 <div className="book-top">
@@ -52,6 +52,11 @@ const Search = (props) => {
                                     </div>
                                     <div className="book-shelf-changer">
                                         <select
+                                            defaultValue={
+                                                (props.currentBooks.filter(currentBook => currentBook.id === book.id).length > 0)
+                                                    ? props.currentBooks.filter(currentBook => currentBook.id === book.id)[0].shelf
+                                                    : 'move'
+                                            }
                                             onClick={props.selectBookShelf}
                                         >
                                             <option value="move">Move to...</option>
@@ -84,7 +89,9 @@ Search.propTypes = {
     searchBooks: PropTypes.func.isRequired,
     searchResults: PropTypes.array.isRequired,
     selectOption: PropTypes.string.isRequired,
-    selectBookShelf: PropTypes.func.isRequired
+    selectBookShelf: PropTypes.func.isRequired,
+    currentBooks: PropTypes.array.isRequired
+
 
 }
 

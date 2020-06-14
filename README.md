@@ -6,4 +6,4 @@
 
 [Bootstrap](https://getbootstrap.com/)
 
-[JEST]('https://jestjs.io/)
+[JEST](https://jestjs.io/)

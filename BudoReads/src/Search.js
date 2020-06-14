@@ -17,7 +17,6 @@ const Search = (props) => {
 
         <div>
             {console.log('Search props,', props)}
-            <Nav />
             <div className="search-books">
                 <div className="search-books-bar mt-5">
                     <div className="search-books-input-wrapper">
@@ -30,14 +29,6 @@ const Search = (props) => {
                                 However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                                 you don't find a specific author or title. Every search is limited by search terms.
                                 */}
-
-                        <input
-                            type="text"
-                            placeholder="Search by title or author"
-                            onChange={props.searchBooks}
-
-                        />
-
 
                     </div>
                 </div>

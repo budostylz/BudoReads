@@ -200,7 +200,7 @@ class BudoReads extends Component {
 
         const { myBooks, selectOption, searchResults } = this.state;
         return (<div>
-
+            <Nav searchBooks={this.searchBooks} />
             <Route
                 exact path='/'
                 render={() => (
@@ -224,7 +224,7 @@ class BudoReads extends Component {
                                     selectBookShelf={this.updateBookShelf}
                                 />
 
-                                <Nav />
+
                             </div>
                         </div>
 
@@ -245,7 +245,6 @@ class BudoReads extends Component {
                     />
                 )}
             />
-
 
 
         </div>)

@@ -29,7 +29,7 @@ const Reads = (props) =>
                         </div>
                         <div className="book-title">{book.title}</div>
                         <div className="book-authors">
-                            {(book.authors.length > 0) ? book.authors.toString() : 'No Author(s)'}
+                            {(book.authors && book.authors.length > 0) ? book.authors.toString() : 'No Author(s)'}
                         </div>
                     </div>
                 </li>))}

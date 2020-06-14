@@ -196,3 +196,5 @@ button:active {
   text-align: center;
   font-size: 0.8em;
 }
+
+.navSearchBox {width:1000px !important;}

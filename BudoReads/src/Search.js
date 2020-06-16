@@ -48,7 +48,7 @@ const Search = (props) => {
                                                     ? props.currentBooks.filter(currentBook => currentBook.id === book.id)[0].shelf
                                                     : 'move'
                                             }
-                                            onClick={props.selectBookShelf}
+                                            onChange={props.selectBookShelf}
                                         >
                                             <option value="move">Move to...</option>
                                             <option value="currentlyReading">Currently Reading</option>

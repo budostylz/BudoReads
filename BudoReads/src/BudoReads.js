@@ -50,6 +50,8 @@ class BudoReads extends Component {
 
     updateBookShelf = (e) => {//update
 
+        //console.log('e.target', e.target)
+
         const { myBooks, selectOption } = this.state;
         const shelf = e.target.options[e.target.options.selectedIndex].value;
         const bookID = e.target.parentElement.parentElement.parentElement.getAttribute('id');

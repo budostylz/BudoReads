@@ -24,7 +24,7 @@ const WantToReads = (props) => {
                             <div className="book-shelf-changer">
                                 <select
                                     defaultValue='wantToRead'
-                                    onClick={props.selectBookShelf}
+                                    onChange={props.selectBookShelf}
 
                                 >
                                     <option value="move" disabled>Move to...</option>

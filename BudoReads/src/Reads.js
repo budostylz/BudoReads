@@ -17,7 +17,7 @@ const Reads = (props) =>
                             <div className="book-shelf-changer">
                                 <select
                                     defaultValue='read'
-                                    onClick={props.selectBookShelf}
+                                    onChange={props.selectBookShelf}
                                 >
                                     <option value="move" disabled>Move to...</option>
                                     <option value="currentlyReading">Currently Reading</option>

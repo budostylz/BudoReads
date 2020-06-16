@@ -14,7 +14,7 @@ const Nav = (props) => {
 
     return (<nav className="navbar navbar-light bg-light">
 
-        {console.log('Nav props: ', props)}
+        {/*console.log('Nav props: ', props)*/}
 
         <Route
             exact path='/'

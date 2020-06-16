@@ -5,7 +5,6 @@
 
 
 import React from 'react'
-import Nav from './Nav.js'
 import PropTypes from 'prop-types'
 
 

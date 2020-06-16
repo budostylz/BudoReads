@@ -52,14 +52,12 @@ class BudoReads extends Component {
 
         //console.log('e.target', e.target)
 
-        const { myBooks, selectOption } = this.state;
+        const { myBooks } = this.state;
         const shelf = e.target.options[e.target.options.selectedIndex].value;
         const bookID = e.target.parentElement.parentElement.parentElement.getAttribute('id');
         const book = myBooks.filter(book => book.id === bookID)[0]; //show me a better way to not use an index[0] if possible
         const newBookSet = myBooks.filter(book => book.id !== bookID);
 
-        console.log('selectedOption', selectOption)
-        console.log('shelf', shelf)
 
         //console.log('state', this.state)
         //console.log('shelf', shelf)
@@ -147,7 +145,7 @@ class BudoReads extends Component {
 
         if (shelf !== 'move') {
 
-            const { myBooks, selectOption } = this.state;
+            const { myBooks } = this.state;
             const bookID = e.target.parentElement.parentElement.parentElement.getAttribute('id');
             const newBookSet = myBooks.filter(book => book.id !== bookID);
 

@@ -189,12 +189,6 @@ class BudoReads extends Component {
 
     }
 
-    clearSearchResults = () => {
-        this.setState(currentState => ({
-            searchResults: []
-        }))
-    }
-
 
 
 
@@ -206,11 +200,7 @@ class BudoReads extends Component {
 
         const { myBooks, selectOption, searchResults } = this.state;
         return (<div>
-            <Nav
-                searchBooks={this.searchBooks}
-                clearSearchResults={this.clearSearchResults}
-
-            />
+            <Nav searchBooks={this.searchBooks} />
             <Route
                 exact path='/'
                 render={() => (

@@ -1,5 +1,6 @@
 ## BudoReads Tests
 
+[Test Renderer](https://reactjs.org/docs/test-renderer.html)
 
 [JEST](https://jestjs.io/)
 

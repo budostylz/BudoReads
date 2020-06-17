@@ -14,7 +14,6 @@ const CurrentReads = (props) => (<div className="bookshelf">
             {/*console.log('CurrentReads props', props.currentBooks.filter(book => book.shelf === 'currentlyReading'))*/}
             {props.currentBooks.filter(book => book.shelf === 'currentlyReading').map(book => (<li key={book.id}>
                 {console.log(book)}
-
                 <div className="book" id={book.id}>
                     <div className="book-top">
                         <div className="book-cover"

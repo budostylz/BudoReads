@@ -4,7 +4,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Route } from 'react-router-dom'
-import PropTypes from 'prop-types'
 
 
 
@@ -14,7 +13,7 @@ const Nav = (props) => {
 
     return (<nav className="navbar navbar-light bg-light">
 
-        {console.log('Nav props: ', props)}
+        {/*console.log('Nav props: ', props)*/}
 
         <Route
             exact path='/'
@@ -35,7 +34,6 @@ const Nav = (props) => {
                     to='/'
                     className="navbar-brand"
                     style={{ color: '#000000' }}
-                    onClick={props.clearSearchResults}
                 ><em>Click Here to Return Home</em></Link>
             )}
         />
@@ -66,11 +64,6 @@ const Nav = (props) => {
 
 }
 
-Nav.propTypes = {
-    searchBooks: PropTypes.func.isRequired,
-    clearSearchResults: PropTypes.func.isRequired
-
-}
 
 
 

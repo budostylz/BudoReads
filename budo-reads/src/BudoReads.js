@@ -1,5 +1,5 @@
 /**
-  * TODO: BudoReads Component
+  * TODO: BudoReads Component: Parent component that houses state and sends props to child components.
 */
 
 import React, { Component } from 'react'
@@ -12,8 +12,15 @@ import Search from './Search.js'
 import * as BooksAPI from './BooksAPI'
 
 
-
 class BudoReads extends Component {
+
+
+    /**
+      * TODO: 3 pieces of state:
+      * myBooks: Collection of books that are pulled from API and updated by user via user interface.
+      * searchResults: Collection of books that are pulled from search API.
+      * selectOption: Tracks user shelf selection.
+    */
 
     state = {
 
@@ -24,29 +31,30 @@ class BudoReads extends Component {
 
     }
 
-    componentDidMount() {//getAll
 
-        //console.log('componentDidMount')
+    /**
+      * TODO: componentDidMount()
+      * Pulls books from API results using getAll() after DOM is rendered in lifecycle.
+      * Sets myBooks[] within state
+      * 
+    */
+
+    componentDidMount() {//getAll
         BooksAPI.getAll()
             .then((books) => {
-                //console.log('books', books)
-
-                this.getBooks(books);
-
+                this.setState(currentState => ({
+                    myBooks: books
+                }))
             })
     }
 
-
-
-    getBooks = (books) => {
-
-        this.setState(currentState => ({
-            myBooks: books
-
-        }))
-
-    }
-
+    /**
+         * TODO: updateBookShelf()
+         * Updates book shelf base on user selection.
+         * Retrieves user selection 'currently reading', 'want to read' and 'read'.
+         * Updates API base on user selection.
+         * Updates myBooks and selectOption within state base on user selection.
+       */
 
     updateBookShelf = (e) => {//update
 

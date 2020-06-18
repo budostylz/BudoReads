@@ -80,40 +80,35 @@ class BudoReads extends Component {
 
     }
 
+    /**
+        * TODO: searchBooks()
+        * Search books by pulling from search API base on user query.
+        * Handles search errors.
+        * Update state if proper search result is pulled.
+      */
+
 
     searchBooks = (e) => {//search
-
         const query = e.target.value;
-
         if (query.trim().length > 0) {
-
             BooksAPI.search(query)
                 .then((result) => {
-
                     if (result) {
                         if (result.error) {
-                            //console.log('error', result)
                             this.setState(currentState => ({
                                 searchResults: []
                             }))
-
                         } else {
-                            //console.log('get results', result)
                             this.setState(currentState => ({
                                 searchResults: result
                             }))
                         }
-
                     } else {
-                        //console.log('undef', result)
                         this.setState(currentState => ({
                             searchResults: []
-
                         }))
 
                     }
-
-
                 })
 
         } else {
@@ -127,11 +122,16 @@ class BudoReads extends Component {
 
     }
 
+    /**
+       * TODO: addBookToShelf()
+       * Add books to shelf from search page
+       * Retrieves book from API
+       * Updates book shelf in API
+       * Updates book shelf in state
+       * 
+     */
     addBookToShelf = (e) => {
-
         const shelf = e.target.options[e.target.options.selectedIndex].value;
-
-
         if (shelf !== 'move') {
 
             const { myBooks } = this.state;
@@ -142,7 +142,6 @@ class BudoReads extends Component {
 
             BooksAPI.get(bookID)
                 .then((book) => {
-
                     BooksAPI.update(book, shelf)
                         .then((updatedBook) => {
 
@@ -158,25 +157,19 @@ class BudoReads extends Component {
 
                                     }))
 
-
-
                                 })
-
-
-
                         })
-
                 })
 
-
-
-
-
         }
-
-
-
     }
+
+
+    /**
+       * TODO: clearSearchResults()
+       * Clear search results when user navigates back to home page.
+       * 
+     */
 
     clearSearchResults = () => {
         this.setState(currentState => ({
@@ -184,15 +177,14 @@ class BudoReads extends Component {
         }))
     }
 
-
-
-
-
+    /**
+       * TODO: render()
+       * Pass props to child components. 
+       * Render child components.
+       * 
+     */
 
     render() {
-
-        console.log('state', this.state)
-
         const { myBooks, selectOption, searchResults } = this.state;
         return (<div>
             <Nav

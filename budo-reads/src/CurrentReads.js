@@ -1,5 +1,7 @@
 /**
   * TODO: CurrentReads Component
+  * Pass props from parent and render component.
+  * Ensure props are valid via prop types.
 */
 
 
@@ -11,10 +13,7 @@ const CurrentReads = (props) => (<div className="bookshelf">
     <h2 className="bookshelf-title">Currently Reading</h2>
     <div className="bookshelf-books">
         <ol className="books-grid">
-            {/*console.log('CurrentReads props', props.currentBooks.filter(book => book.shelf === 'currentlyReading'))*/}
             {props.currentBooks.filter(book => book.shelf === 'currentlyReading').map(book => (<li key={book.id}>
-                {console.log(book)}
-
                 <div className="book" id={book.id}>
                     <div className="book-top">
                         <div className="book-cover"

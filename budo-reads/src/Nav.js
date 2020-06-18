@@ -1,20 +1,16 @@
 /**
   * TODO: Nav Component
+  * Pass props from parent and render component.
+  * Ensure props are valid via prop types.
 */
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-
-
 const Nav = (props) => {
 
-    //console.log('Nav props', props)
-
     return (<nav className="navbar navbar-light bg-light">
-
-        {console.log('Nav props: ', props)}
 
         <Route
             exact path='/'

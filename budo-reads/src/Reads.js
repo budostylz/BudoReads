@@ -1,3 +1,10 @@
+/**
+  * TODO: Reads Component
+  * Pass props from parent and render component.
+  * Ensure props are valid via prop types.
+*/
+
+
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -7,7 +14,6 @@ const Reads = (props) =>
         <h2 className="bookshelf-title">Read</h2>
         <div className="bookshelf-books">
             <ol className="books-grid">
-                {/*console.log('Reads props', props)*/}
                 {props.readBooks.filter(book => book.shelf === 'read').map(book => (<li key={book.id}>
                     <div className="book" id={book.id}>
                         <div className="book-top">

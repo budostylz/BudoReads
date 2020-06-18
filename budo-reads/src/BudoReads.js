@@ -57,43 +57,24 @@ class BudoReads extends Component {
        */
 
     updateBookShelf = (e) => {//update
-
-        //console.log('e.target', e.target)
-
         const { myBooks } = this.state;
         const shelf = e.target.options[e.target.options.selectedIndex].value;
         const bookID = e.target.parentElement.parentElement.parentElement.getAttribute('id');
         const book = myBooks.filter(book => book.id === bookID)[0]; //show me a better way to not use an index[0] if possible
         const newBookSet = myBooks.filter(book => book.id !== bookID);
 
-
-        //console.log('state', this.state)
-        //console.log('shelf', shelf)
-        //console.log('book id', bookID)
-        //console.log('selectedBook', book)
-        //console.log('new book set filtered', newBookSet)
-
-
-
         //update API
         BooksAPI.update(book, shelf)
             .then((book) => {
-                //console.log('update book', book)
                 BooksAPI.get(bookID)
                     .then((book) => {
-                        //console.log('get updated book', book)
-
                         newBookSet.push(book)
-
-                        //console.log('new myBooks state', newBookSet)
-
                         this.setState(currentState => ({
                             myBooks: newBookSet,
                             selectOption: shelf
 
                         }))
                     })
-
             })
 
 

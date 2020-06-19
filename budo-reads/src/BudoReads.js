@@ -57,10 +57,6 @@ class BudoReads extends Component {
        */
 
     updateBookShelf = (e) => {//update
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         const { myBooks } = this.state;
         const shelf = e.target.options[e.target.options.selectedIndex].value;
         const bookID = e.target.parentElement.parentElement.parentElement.getAttribute('id');
@@ -76,36 +72,22 @@ class BudoReads extends Component {
                         this.setState(currentState => ({
                             myBooks: newBookSet,
                             selectOption: shelf
-<<<<<<< HEAD
-                        }))
-                    })
-            })
-=======
 
                         }))
                     })
             })
 
 
->>>>>>> dev
     }
 
     /**
         * TODO: searchBooks()
-<<<<<<< HEAD
-        * Searches book from search API using query.
-        * Handles search errors
-        * Updates state if proper search results are pulled.
-      */
-
-=======
         * Search books by pulling from search API base on user query.
         * Handles search errors.
         * Update state if proper search result is pulled.
       */
 
 
->>>>>>> dev
     searchBooks = (e) => {//search
         const query = e.target.value;
         if (query.trim().length > 0) {
@@ -136,15 +118,6 @@ class BudoReads extends Component {
             }))
         }
 
-<<<<<<< HEAD
-    }
-
-    addBookToShelf = (e) => {
-
-        const shelf = e.target.options[e.target.options.selectedIndex].value;
-
-
-=======
 
 
     }
@@ -159,7 +132,6 @@ class BudoReads extends Component {
      */
     addBookToShelf = (e) => {
         const shelf = e.target.options[e.target.options.selectedIndex].value;
->>>>>>> dev
         if (shelf !== 'move') {
 
             const { myBooks } = this.state;
@@ -170,10 +142,6 @@ class BudoReads extends Component {
 
             BooksAPI.get(bookID)
                 .then((book) => {
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
                     BooksAPI.update(book, shelf)
                         .then((updatedBook) => {
 
@@ -189,27 +157,6 @@ class BudoReads extends Component {
 
                                     }))
 
-<<<<<<< HEAD
-
-
-                                })
-
-
-
-                        })
-
-                })
-
-
-
-
-
-        }
-
-
-
-    }
-=======
                                 })
                         })
                 })
@@ -223,7 +170,6 @@ class BudoReads extends Component {
        * Clear search results when user navigates back to home page.
        * 
      */
->>>>>>> dev
 
     clearSearchResults = () => {
         this.setState(currentState => ({
@@ -231,17 +177,6 @@ class BudoReads extends Component {
         }))
     }
 
-<<<<<<< HEAD
-
-
-
-
-
-    render() {
-
-        console.log('state', this.state)
-
-=======
     /**
        * TODO: render()
        * Pass props to child components. 
@@ -250,7 +185,6 @@ class BudoReads extends Component {
      */
 
     render() {
->>>>>>> dev
         const { myBooks, selectOption, searchResults } = this.state;
         return (<div>
             <Nav

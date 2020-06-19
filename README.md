@@ -22,10 +22,8 @@ Users can search books using a search API via a search text bok. A limit of 20 b
 ## Usage
 Clone and use the following commands.
 
-    ```unix
-        npm install
-        npm start
-
-    ```
-
+```unix
+    npm install
+    npm start
+```
 

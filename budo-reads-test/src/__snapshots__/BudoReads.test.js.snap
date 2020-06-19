@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Display Currently Reading, Want to Read and Read Sections 1`] = `
+<div
+  className="bookshelf"
+>
+  <h2
+    className="bookshelf-title"
+  >
+    Currently Reading
+  </h2>
+  <div
+    className="bookshelf-books"
+  >
+    <ol
+      className="books-grid"
+    />
+  </div>
+</div>
+`;
+
+exports[`Display Currently Reading, Want to Read and Read Sections 2`] = `
+<div
+  className="bookshelf"
+>
+  <h2
+    className="bookshelf-title"
+  >
+    Currently Reading
+  </h2>
+  <div
+    className="bookshelf-books"
+  >
+    <ol
+      className="books-grid"
+    />
+  </div>
+</div>
+`;
+
+exports[`Display Currently Reading, Want to Read and Read Sections 3`] = `
+<div
+  className="bookshelf"
+>
+  <h2
+    className="bookshelf-title"
+  >
+    Currently Reading
+  </h2>
+  <div
+    className="bookshelf-books"
+  >
+    <ol
+      className="books-grid"
+    />
+  </div>
+</div>
+`;
+
+exports[`Link changes the class when hovered 1`] = `null`;

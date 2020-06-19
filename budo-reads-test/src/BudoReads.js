@@ -1,5 +1,5 @@
 /**
-  * TODO: BudoReads Component: Parent component that houses state and sends props to child components.
+  * TODO: BudoReads Component
 */
 
 import React, { Component } from 'react'
@@ -12,15 +12,8 @@ import Search from './Search.js'
 import * as BooksAPI from './BooksAPI'
 
 
+
 class BudoReads extends Component {
-
-
-    /**
-      * TODO: 3 pieces of state:
-      * myBooks: Collection of books that are pulled from API and updated by user via user interface.
-      * searchResults: Collection of books that are pulled from search API.
-      * selectOption: Tracks user shelf selection.
-    */
 
     state = {
 
@@ -31,102 +24,107 @@ class BudoReads extends Component {
 
     }
 
-
-    /**
-      * TODO: componentDidMount()
-      * Pulls books from API results using getAll() after DOM is rendered in lifecycle.
-      * Sets myBooks[] within state
-      * 
-    */
-
     componentDidMount() {//getAll
+
+        //console.log('componentDidMount')
         BooksAPI.getAll()
             .then((books) => {
-                this.setState(currentState => ({
-                    myBooks: books
-                }))
+                //console.log('books', books)
+
+                this.getBooks(books);
+
             })
     }
 
-    /**
-         * TODO: updateBookShelf()
-         * Updates book shelf base on user selection.
-         * Retrieves user selection 'currently reading', 'want to read' and 'read'.
-         * Updates API base on user selection.
-         * Updates myBooks and selectOption within state base on user selection.
-       */
+
+
+    getBooks = (books) => {
+
+        this.setState(currentState => ({
+            myBooks: books
+
+        }))
+
+    }
+
 
     updateBookShelf = (e) => {//update
-<<<<<<< HEAD
 
-=======
->>>>>>> dev
+        //console.log('e.target', e.target)
+
         const { myBooks } = this.state;
         const shelf = e.target.options[e.target.options.selectedIndex].value;
         const bookID = e.target.parentElement.parentElement.parentElement.getAttribute('id');
         const book = myBooks.filter(book => book.id === bookID)[0]; //show me a better way to not use an index[0] if possible
         const newBookSet = myBooks.filter(book => book.id !== bookID);
 
+
+        //console.log('state', this.state)
+        //console.log('shelf', shelf)
+        //console.log('book id', bookID)
+        //console.log('selectedBook', book)
+        //console.log('new book set filtered', newBookSet)
+
+
+
         //update API
         BooksAPI.update(book, shelf)
             .then((book) => {
+                //console.log('update book', book)
                 BooksAPI.get(bookID)
                     .then((book) => {
+                        //console.log('get updated book', book)
+
                         newBookSet.push(book)
+
+                        //console.log('new myBooks state', newBookSet)
+
                         this.setState(currentState => ({
                             myBooks: newBookSet,
                             selectOption: shelf
-<<<<<<< HEAD
-                        }))
-                    })
-            })
-=======
 
                         }))
                     })
+
             })
 
 
->>>>>>> dev
     }
 
-    /**
-        * TODO: searchBooks()
-<<<<<<< HEAD
-        * Searches book from search API using query.
-        * Handles search errors
-        * Updates state if proper search results are pulled.
-      */
 
-=======
-        * Search books by pulling from search API base on user query.
-        * Handles search errors.
-        * Update state if proper search result is pulled.
-      */
-
-
->>>>>>> dev
     searchBooks = (e) => {//search
+
         const query = e.target.value;
+
         if (query.trim().length > 0) {
+
             BooksAPI.search(query)
                 .then((result) => {
+
                     if (result) {
                         if (result.error) {
+                            //console.log('error', result)
                             this.setState(currentState => ({
                                 searchResults: []
                             }))
+
                         } else {
+                            //console.log('get results', result)
                             this.setState(currentState => ({
                                 searchResults: result
                             }))
                         }
+
                     } else {
+                        //console.log('undef', result)
                         this.setState(currentState => ({
                             searchResults: []
+
                         }))
 
                     }
+
+
                 })
 
         } else {
@@ -136,7 +134,8 @@ class BudoReads extends Component {
             }))
         }
 
-<<<<<<< HEAD
+
+
     }
 
     addBookToShelf = (e) => {
@@ -144,22 +143,6 @@ class BudoReads extends Component {
         const shelf = e.target.options[e.target.options.selectedIndex].value;
 
 
-=======
-
-
-    }
-
-    /**
-       * TODO: addBookToShelf()
-       * Add books to shelf from search page
-       * Retrieves book from API
-       * Updates book shelf in API
-       * Updates book shelf in state
-       * 
-     */
-    addBookToShelf = (e) => {
-        const shelf = e.target.options[e.target.options.selectedIndex].value;
->>>>>>> dev
         if (shelf !== 'move') {
 
             const { myBooks } = this.state;
@@ -170,10 +153,7 @@ class BudoReads extends Component {
 
             BooksAPI.get(bookID)
                 .then((book) => {
-<<<<<<< HEAD
 
-=======
->>>>>>> dev
                     BooksAPI.update(book, shelf)
                         .then((updatedBook) => {
 
@@ -189,7 +169,6 @@ class BudoReads extends Component {
 
                                     }))
 
-<<<<<<< HEAD
 
 
                                 })
@@ -209,29 +188,7 @@ class BudoReads extends Component {
 
 
     }
-=======
-                                })
-                        })
-                })
 
-        }
-    }
-
-
-    /**
-       * TODO: clearSearchResults()
-       * Clear search results when user navigates back to home page.
-       * 
-     */
->>>>>>> dev
-
-    clearSearchResults = () => {
-        this.setState(currentState => ({
-            searchResults: []
-        }))
-    }
-
-<<<<<<< HEAD
 
 
 
@@ -241,23 +198,9 @@ class BudoReads extends Component {
 
         console.log('state', this.state)
 
-=======
-    /**
-       * TODO: render()
-       * Pass props to child components. 
-       * Render child components.
-       * 
-     */
-
-    render() {
->>>>>>> dev
         const { myBooks, selectOption, searchResults } = this.state;
         return (<div>
-            <Nav
-                searchBooks={this.searchBooks}
-                clearSearchResults={this.clearSearchResults}
-
-            />
+            <Nav searchBooks={this.searchBooks} />
             <Route
                 exact path='/'
                 render={() => (

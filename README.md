@@ -1,6 +1,6 @@
 # React Projects
 
-# BudoReads
+## BudoReads
 + By: *Shaun Lewis*
 
 ## Outside resources

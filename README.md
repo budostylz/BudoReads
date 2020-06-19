@@ -28,6 +28,4 @@ Clone and use the following commands.
 
     ```
 
-## Enjoy
-
 

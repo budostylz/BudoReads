@@ -1,5 +1,3 @@
-# React Projects
-
 ## BudoReads
 + By: *Shaun Lewis*
 

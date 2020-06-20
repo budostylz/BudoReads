@@ -1,3 +1,5 @@
+# React Projects
+
 ## BudoReads
 + By: *Shaun Lewis*
 
@@ -21,8 +23,8 @@ Users can search books using a search API via a search text bok. A limit of 20 b
 Clone and use the following commands.
 
 ```unix
+    cd ReactProjects/budo-reads
     npm install
     npm start
 ```
-
 

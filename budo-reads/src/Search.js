@@ -40,11 +40,11 @@ const Search = (props) => {
                                         defaultValue={
                                             (props.currentBooks.filter(currentBook => currentBook.id === book.id).length > 0)
                                                 ? props.currentBooks.filter(currentBook => currentBook.id === book.id)[0].shelf
-                                                : 'move'
+                                                : 'none'
                                         }
                                         onChange={props.selectBookShelf}
                                     >
-                                        <option value="move">Move to...</option>
+                                        <option value="move" disabled>Move to...</option>
                                         <option value="currentlyReading">Currently Reading</option>
                                         <option value="wantToRead">Want to Read</option>
                                         <option value="read">Read</option>

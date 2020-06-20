@@ -26,7 +26,8 @@ class BudoReads extends Component {
 
         myBooks: [],
         searchResults: [],
-        selectOption: ''
+        selectOption: '',
+        query: ''
 
 
     }
@@ -90,35 +91,28 @@ class BudoReads extends Component {
 
     searchBooks = (e) => {//search
         const query = e.target.value;
-        if (query.trim().length > 0) {
-            BooksAPI.search(query)
-                .then((result) => {
-                    if (result) {
-                        if (result.error) {
-                            this.setState(currentState => ({
-                                searchResults: []
-                            }))
-                        } else {
-                            this.setState(currentState => ({
-                                searchResults: result
-                            }))
-                        }
+        BooksAPI.search(query)
+            .then((result) => {
+                if (result) {
+                    if (result.error) {
+                        this.setState(currentState => ({
+                            searchResults: [],
+                            query: query
+                        }))
                     } else {
                         this.setState(currentState => ({
-                            searchResults: []
+                            searchResults: result,
+                            query: query
                         }))
-
                     }
-                })
+                } else {
+                    this.setState(currentState => ({
+                        searchResults: [],
+                        query: query
+                    }))
 
-        } else {
-            this.setState(currentState => ({
-                searchResults: []
-
-            }))
-        }
-
-
+                }
+            })
 
     }
 
@@ -137,20 +131,13 @@ class BudoReads extends Component {
             const { myBooks } = this.state;
             const bookID = e.target.parentElement.parentElement.parentElement.getAttribute('id');
             const newBookSet = myBooks.filter(book => book.id !== bookID);
-
-            //console.log(shelf, bookID, newBookSet)
-
             BooksAPI.get(bookID)
                 .then((book) => {
                     BooksAPI.update(book, shelf)
                         .then((updatedBook) => {
-
                             BooksAPI.get(bookID)
                                 .then((updatedBook) => {
-                                    //console.log('updated book', updatedBook)
-
                                     newBookSet.push(updatedBook)
-
                                     this.setState(currentState => ({
                                         myBooks: newBookSet,
                                         selectOption: shelf
